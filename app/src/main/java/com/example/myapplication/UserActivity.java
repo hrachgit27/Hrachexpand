@@ -37,6 +37,10 @@ public class UserActivity extends AppCompatActivity {
                         loadedUsers = currentUser.getLoadedUsers();
                         showCurrentUser();
                     });
+                    currentUser.loadMatches(this, () -> {
+                        matches = currentUser.getMatches();
+                        inboxFragment.setMatchedUsers(matches);
+                    });
                 } else {
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
                     finish(); // exit activity
@@ -49,13 +53,6 @@ public class UserActivity extends AppCompatActivity {
         Button dislikeButton = findViewById(R.id.passButton);
         ImageButton messageButton = findViewById(R.id.messagesButton);
         ImageButton matchButton = findViewById(R.id.matchesButton);
-
-        messageButton.setEnabled(false);
-        currentUser.loadMatches(this, () -> {
-            inboxFragment.setMatchedUsers(currentUser.getMatches());
-            inboxFragment.setMatchedUsers(matches);
-            messageButton.setEnabled(true);
-        });
 
         likeButton.setOnClickListener(v -> {
             Hrachexpand likedUser = loadedUsers.get(currentIndex);
@@ -89,6 +86,9 @@ public class UserActivity extends AppCompatActivity {
             findViewById(R.id.matchNameAge).setVisibility(View.GONE);
             findViewById(R.id.matchBio).setVisibility(View.GONE);
             findViewById(R.id.buttonRow).setVisibility(View.GONE);
+
+            matches = currentUser.getMatches();
+            inboxFragment.setMatchedUsers(matches);
 
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.inbox_activity, inboxFragment)

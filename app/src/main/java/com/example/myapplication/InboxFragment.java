@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,7 +34,10 @@ public class InboxFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         adapter = new InboxAdapter(matchedUsers, user -> {
-            // handle click
+            Intent intent = new Intent(requireContext(), ChatActivity.class);
+            intent.putExtra("receiverId", user.getId());   // assuming Hrachexpand has getId()
+            intent.putExtra("receiverName", user.getFirstName()); // optional
+            startActivity(intent);
         });
         recyclerView.setAdapter(adapter);
 
