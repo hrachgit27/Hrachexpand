@@ -1,6 +1,6 @@
 Hrachexpand is a Java/Android Studio application designed as a modern dating-style social platform. It enables users to register, log in, upload profile images, like/dislike other users, form matches, and chat through a real-time messaging system. The project is built with Firebase (Auth, Firestore, and Storage) and is intended as both a portfolio project and a production-ready experiment in scalable mobile app development.
 
-✨ Features
+✨ Features:
 User Authentication
   Registration & Login with Firebase Authentication
   Persistent session management
