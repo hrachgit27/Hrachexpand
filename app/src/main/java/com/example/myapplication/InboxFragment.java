@@ -36,6 +36,7 @@ public class InboxFragment extends Fragment {
         adapter = new InboxAdapter(matchedUsers, user -> {
             Intent intent = new Intent(requireContext(), ChatActivity.class);
             intent.putExtra("receiverId", user.getId());   // assuming Hrachexpand has getId()
+            intent.putExtra("currentUserId", 553446);
             intent.putExtra("receiverName", user.getFirstName()); // optional
             startActivity(intent);
         });

@@ -61,8 +61,11 @@ public class UserActivity extends AppCompatActivity {
                     .update("likes", currentUser.getLikes());
             if (currentUser.matchMaker(likedUser)) {
                 currentUser.numMatches(likedUser.getId());
+                likedUser.numMatches(currentUser.getId());
                 db.collection("users").document(String.valueOf(currentUser.getId()))
                         .update("matches", currentUser.getMatches());
+                db.collection("users").document(String.valueOf(likedUser.getId()))
+                        .update("matches", likedUser.getMatches());
                 Intent intent = new Intent(UserActivity.this, MatchActivity.class);
                 intent.putExtra("match", likedUser.getFilepath());
                 startActivityForResult(intent, 1001);
