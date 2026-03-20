@@ -1,44 +1,60 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="20dp">
-    <ImageView
-            android:id="@+id/image"
-            android:layout_width="306dp"
-            android:layout_height="469dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="Profile Image"
-            android:background="@android:color/darker_gray"/>
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="#FF4081">
+
     <TextView
-            android:id="@+id/matchNameAge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="You have a new Match!!!"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_below="@id/image"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"/>
-    <LinearLayout
-            android:id="@+id/buttonRow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginBottom="40dp">
-        <Button
-                android:text="Message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/messageB" android:layout_weight="1"/>
-        <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:layout_weight="1"/>
-        <Button
-                android:text="Next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/nextB" android:layout_weight="1"/>
-    </LinearLayout>
-</RelativeLayout>
+        android:id="@+id/matchTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="It's a Match! 🎉"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#1E1E1E"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/matchSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#FFEEEE"
+        android:gravity="center"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Matched user's profile photo -->
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/circle_border_white"
+        android:contentDescription="Match photo"
+        android:layout_marginBottom="40dp"/>
+
+    <!-- "Send a Message" — opens chat directly -->
+    <Button
+        android:id="@+id/chatButton"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Send a Message 💬"
+        android:textSize="16sp"
+        android:textColor="#FF4081"
+        android:backgroundTint="#1E1E1E"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- "Keep Swiping" — returns to swipe deck -->
+    <Button
+        android:id="@+id/nextB"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Keep Swiping"
+        android:textSize="16sp"
+        android:textColor="#1E1E1E"
+        android:backgroundTint="#CC1E1E1E"/>
+
+</LinearLayout>

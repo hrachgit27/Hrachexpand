@@ -1,108 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    android:background="#121212">
+
+    <!-- Inbox fragment container — sits behind everything, shown when messaging -->
     <FrameLayout
-            android:id="@+id/inbox_activity"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/bottomNavBar"/>
+        android:id="@+id/inbox_activity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavBar"/>
 
     <!-- Profile Image -->
     <ImageView
-            android:id="@+id/image"
-            android:layout_width="306dp"
-            android:layout_height="469dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:scaleType="centerCrop"
-            android:contentDescription="Profile Image"
-            android:background="@android:color/darker_gray" />
+        android:id="@+id/image"
+        android:layout_width="306dp"
+        android:layout_height="469dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Profile Image"
+        android:background="@drawable/circle_placeholder_bg"/>
 
     <!-- Name and Age -->
     <TextView
-            android:id="@+id/matchNameAge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name, Age"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_below="@id/image"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"/>
+        android:id="@+id/matchNameAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name, Age"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#F0F0F0"
+        android:layout_below="@id/image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
 
     <!-- Bio -->
     <TextView
-            android:id="@+id/matchBio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bio goes here..."
-            android:textSize="16sp"
-            android:layout_below="@id/matchNameAge"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"/>
+        android:id="@+id/matchBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bio goes here…"
+        android:textSize="15sp"
+        android:textColor="#666666"
+        android:layout_below="@id/matchNameAge"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
+        android:maxLines="2"
+        android:ellipsize="end"/>
 
     <!-- Like / Pass Buttons -->
     <LinearLayout
-            android:id="@+id/buttonRow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/bottomNavBar"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
+        android:id="@+id/buttonRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomNavBar"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
 
         <Button
-                android:id="@+id/passButton"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Pass" />
+            android:id="@+id/passButton"
+            android:layout_width="120dp"
+            android:layout_height="52dp"
+            android:text="✕  Pass"
+            android:textColor="#FF4081"
+            android:backgroundTint="#1E1E1E"/>
 
         <Space
-                android:layout_width="30dp"
-                android:layout_height="wrap_content" />
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"/>
 
         <Button
-                android:id="@+id/likeButton"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:text="Like" />
+            android:id="@+id/likeButton"
+            android:layout_width="120dp"
+            android:layout_height="52dp"
+            android:text="♥  Like"
+            android:textColor="#1E1E1E"
+            android:backgroundTint="#FF4081"/>
     </LinearLayout>
 
-    <!-- Connected Bottom Nav Bar with icons -->
+    <!-- Bottom nav bar — matches + messages buttons -->
     <LinearLayout
-            android:id="@+id/bottomNavBar"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+        android:id="@+id/bottomNavBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
-        <ImageButton
+        <!-- Matches button with badge overlay -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
                 android:id="@+id/matchesButton"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:background="@drawable/left_nav_button"
                 android:src="@drawable/ic_heart"
                 android:scaleType="centerInside"
                 android:contentDescription="Matches"
                 android:padding="10dp"
-                app:tint="#FFFFFF"/>
+                app:tint="#1E1E1E"/>
+
+            <!-- Match count badge — top-right corner of the button -->
+            <TextView
+                android:id="@+id/matchCountBadge"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="4dp"
+                android:background="@drawable/badge_bg"
+                android:textColor="#1E1E1E"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:visibility="gone"/>
+        </FrameLayout>
+
         <ImageButton
-                android:id="@+id/messagesButton"
-                android:layout_width="2dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/right_nav_button"
-                android:src="@drawable/ic_chat"
-                android:scaleType="centerInside"
-                android:contentDescription="Messages"
-                android:padding="10dp"
-                app:tint="#FFFFFF"/>
+            android:id="@+id/messagesButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/right_nav_button"
+            android:src="@drawable/ic_chat"
+            android:scaleType="centerInside"
+            android:contentDescription="Messages"
+            android:padding="10dp"
+            app:tint="#1E1E1E"/>
+
     </LinearLayout>
 
 </RelativeLayout>
